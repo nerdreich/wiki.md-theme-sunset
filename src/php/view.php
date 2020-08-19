@@ -1,0 +1,37 @@
+<?php
+
+/**
+ * Copyright 2020 Markus Leupold-Löwenthal
+ *
+ * This file is part of wiki.md-theme-sunset (Sunset).
+ *
+ * Sunset is free software: you can redistribute it and/or modify it under the
+ * terms of the GNU Affero General Public License as published by the Free
+ * Software Foundation, either version 3 of the License, or (at your option) any
+ * later version.
+ *
+ * Sunset is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+ * A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with wiki.md. If not, see <https://www.gnu.org/licenses/>.
+ */
+
+outputHeader($config, $wiki->getTitle(), $wiki->getDescription());
+outputNavbar($wiki, $user);
+outputBanner($wiki);
+
+?>
+<section class="section-main container">
+  <div class="row">
+    <div class="col-12 col-lg-9">
+      <?php echo $wiki->getTitle() !== '' ? '<h1>' . htmlspecialchars($wiki->getTitle()) . '</h1>' : ''; ?>
+      <?php echo beautify($wiki->getContentHTML()); ?>
+    </div>
+    <nav class="col-12 col-lg-3 sidenav">
+      <?php echo beautify($wiki->getSnippetHTML('nav')); ?>
+    </nav>
+  </div>
+</section>
+<?php outputFooter($wiki); ?>

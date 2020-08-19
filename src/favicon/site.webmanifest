@@ -1,0 +1,12 @@
+{
+  "short_name": "wiki.md",
+  "name": "wiki.md",
+  "icons": [{
+    "src": "icon.png",
+    "type": "image/png",
+    "sizes": "192x192"
+  }],
+  "start_url": "/?utm_source=homescreen",
+  "background_color": "$BGCOLOR$",
+  "theme_color": "$BGCOLOR$"
+}

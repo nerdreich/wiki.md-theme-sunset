@@ -1,0 +1,24 @@
+// MIT License - Copyright (c) 2020 nerdreich.at - see LICENSE.md
+
+$theme-color1: #df691a;
+$theme-color2: #1d1e2c;
+$theme-color3: #e3e5e7;
+
+$theme-color4: #394754;
+$theme-color5: #223240;
+$theme-color6: #1e2a33;
+
+$color-error: #ed0006;
+$color-bg: $theme-color5;
+$color-bg-highlight: $theme-color4;
+$color-panel-bg: $theme-color6;
+$color-text: $theme-color3;
+$color-primary: $theme-color1;
+
+pre,
+code,
+kbd,
+samp {
+  background-color: $theme-color6;
+  border-radius: $var-border-radius;
+}
