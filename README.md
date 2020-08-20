@@ -2,6 +2,8 @@
 
 A wiki.md theme built around the Averia font family.
 
+![wiki.md](preview.png)
+
 ## Requirements
 
 * [wiki.md](https://github.com/nerdreich/wiki.md)
