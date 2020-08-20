@@ -69,7 +69,7 @@ outputBanner($wiki);
       <?php } ?>
     </div>
     <nav class="col-12 col-md-4 col-lg-3 sidenav">
-      <?php echo $wiki->getSnippetHTML('nav'); ?>
+      <?php echo beautify($wiki->getSnippetHTML('nav')); ?>
     </nav>
   </div>
 </section>
