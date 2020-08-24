@@ -12,7 +12,7 @@
 // A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details.
 //
 // You should have received a copy of the GNU Affero General Public License
-// along with wiki.md. If not, see <https://www.gnu.org/licenses/>.
+// along with Sunset. If not, see <https://www.gnu.org/licenses/>.
 
 ////
 /// @group abstracts
@@ -158,8 +158,12 @@ samp {
   padding: .1em .25em;
 }
 
-pre code {
-  padding: 0;
+pre {
+  padding: .75em;
+
+  code {
+    padding: 0;
+  }
 }
 
 .h0,

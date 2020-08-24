@@ -15,10 +15,10 @@
  * A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with wiki.md. If not, see <https://www.gnu.org/licenses/>.
+ * along with Sunset. If not, see <https://www.gnu.org/licenses/>.
  */
 
-outputHeader($config, ___('Login'), 'wiki.md login page');
+outputHeader($config, $wiki->getWikiPath(), ___('Login'), 'wiki.md login page');
 outputNavbar($wiki, $user);
 outputBanner($wiki);
 
@@ -31,7 +31,7 @@ outputBanner($wiki);
       <form action="?<?php
         echo array_key_exists('action', $_GET) ? 'action=' . urlencode($_GET['action']) . '&' : '';
         ?>auth=login" method="post">
-        <input type="password" name="password" placeholder='********' required>
+        <input type="password" name="password" placeholder='********' required autofocus>
         <input type="submit" class="primary" value="<?php __('Login'); ?>">
       </form>
     </div>
