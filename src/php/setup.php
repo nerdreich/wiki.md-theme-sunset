@@ -15,13 +15,13 @@
  * A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with wiki.md. If not, see <https://www.gnu.org/licenses/>.
+ * along with Sunset. If not, see <https://www.gnu.org/licenses/>.
  */
 
 // --- setup I18N --------------------------------------------------------------
 
-require_once('wiki.i18n.php');
-at\nerdreich\i18n\Translate::loadLanguage(dirname(__FILE__) . '/I18N/' . $config['language'] . '.yaml');
+require_once('core/Translate.php');
+at\nerdreich\Translate::loadLanguage(dirname(__FILE__) . '/I18N/' . $config['language'] . '.yaml');
 
 // --- register theme macros ---------------------------------------------------
 
@@ -118,17 +118,17 @@ function getPageLinksHTML(
     $wiki
 ): string {
     $html = '';
-    if ($user->mayUpdate($wiki->getPath())) {
+    if ($user->mayUpdate($wiki->getWikiPath())) {
         if ($wiki->exists()) {
             $html .= '<a href="?action=edit"><i class="fas fa-edit"></i> ' . ___('Edit') . '</a><br>';
         } else {
             $html .= '<a href="?action=createPage"><i class="fas fa-edit"></i> ' . ___('Create') . '</a><br>';
         }
     }
-    if ($wiki->exists() && $user->mayRead($wiki->getPath()) && $user->mayUpdate($wiki->getPath())) {
+    if ($wiki->exists() && $user->mayRead($wiki->getWikiPath()) && $user->mayUpdate($wiki->getWikiPath())) {
         $html .= '<a href="?action=history"><i class="fas fa-history"></i> ' . ___('History') . '</a><br>';
     }
-    if ($wiki->exists() && $user->mayDelete($wiki->getPath())) {
+    if ($wiki->exists() && $user->mayDelete($wiki->getWikiPath())) {
         $html .= '<a href="?action=delete"><i class="fas fa-trash"></i> ' . ___('Delete') . '</a><br>';
     }
     if ($user->isLoggedIn()) {
@@ -141,12 +141,37 @@ function getPageLinksHTML(
 }
 
 /**
+ * Convert a wiki path into a series of CSS classes.
+ *
+ * This is usefull to style pages depending on their folder or name. E.g.
+ * `/animal/lion` -> `page page-animal page-animal-lion`
+ *
+ * @param string Wiki path to convert.
+ * @return string Class string to be added to class="".
+ */
+function pathToClasses(
+    string $wikiPath
+): string {
+    $css = '';
+    $prefix = 'page';
+    foreach (explode('/', $wikiPath) as $element) {
+        if ($element === '') {
+            $css = $prefix;
+        } else {
+            $css .= ' ' . $prefix . '-' . $element;
+            $prefix = $prefix . '-' . $element;
+        }
+    }
+    return trim($css);
+}
+
+/**
  * Generate the HTML header and open the <body>.
  *
  * @param at\nerdreich\Wiki $wiki Current CMS object.
  * @param array $config Wiki configuration.
  */
-function outputHeader(array $config, string $title, string $description = '')
+function outputHeader(array $config, string $path, string $title, string $description = '')
 {
     ?><!doctype html>
 <html class="no-js" lang="">
@@ -161,7 +186,7 @@ function outputHeader(array $config, string $title, string $description = '')
   <style>body { background-color: $BGCOLOR$; color: rgba(255, 255, 255, 0.8); }</style>
   <link rel="stylesheet" href="<?php echo $config['themePath']; ?>style.css?v=$VERSION$">
 </head>
-<body>
+<body class="<?php echo htmlspecialchars(pathToClasses($path)); ?>">
     <?php
 }
 
