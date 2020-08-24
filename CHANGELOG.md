@@ -1,3 +1,11 @@
+# v0.2.0
+
+* backported changes of Elegant theme 0.4.0
+* fixed missing html preprocessing on history page
+* updated docs
+* added autofocus on primary form fields
+* added preview image to README.md
+
 # v0.1.0
 
 * initial release
