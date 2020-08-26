@@ -6,7 +6,7 @@ A wiki.md theme built around the Averia font family.
 
 ## Requirements
 
-* [wiki.md](https://github.com/nerdreich/wiki.md)
+* [wiki.md](https://github.com/nerdreich/wiki.md) v0.5.0
 
 ## Installation
 
