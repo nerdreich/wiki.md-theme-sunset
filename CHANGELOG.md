@@ -1,3 +1,7 @@
+# v0.3.0
+
+* backported changes of Elegant theme 0.5.0
+
 # v0.2.0
 
 * backported changes of Elegant theme 0.4.0
