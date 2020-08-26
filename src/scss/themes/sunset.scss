@@ -14,30 +14,37 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Sunset. If not, see <https://www.gnu.org/licenses/>.
 
-@import '../../node_modules/bootstrap/scss/bootstrap-reboot';
-@import '../../node_modules/bootstrap/scss/bootstrap-grid';
-@import '../../node_modules/bootstrap/scss/mixins/breakpoints';
+$theme-color1: #df691a;
+$theme-color2: #1d1e2c;
+$theme-color3: #e3e5e7;
 
-// --- our stuff ----------------------------------------------------------
+$theme-color4: #394754;
+$theme-color5: #223240;
+$theme-color6: #1e2a33;
 
-@import 'abstracts/tools';
-@import 'abstracts/variables';
+$color-bg: $theme-color5;
+$color-bg-highlight: $theme-color4;
+$color-panel-bg: $theme-color6;
+$color-text: $theme-color3;
+$color-primary: $theme-color1;
 
-@import 'themes/colors';
-@import 'themes/sunset';
+$color-negative: #be4f4e;
+$color-info: #496a81;
+$color-warning: #d5a021;
+$color-positive: #5fad41;
 
-@import 'layout/layout';
-@import 'layout/sections';
+pre,
+code,
+kbd,
+samp {
+  background-color: $theme-color4;
+  border-radius: $var-border-radius;
+}
 
-@import 'base/typography';
+.error {
+  color: $color-negative;
+}
 
-@import 'components/banner';
-@import 'components/buttons';
-@import 'components/cards';
-@import 'components/footer';
-@import 'components/forms';
-@import 'components/navigation';
-@import 'components/tables';
-
-@import 'pages/history';
-@import 'pages/docs';
+.warning {
+  color: $color-warning;
+}

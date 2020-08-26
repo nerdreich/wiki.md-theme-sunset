@@ -49,4 +49,4 @@ outputBanner($wiki);
     </nav>
   </div>
 </section>
-<?php outputFooter($wiki); ?>
+<?php outputFooter($wiki, $config); ?>
