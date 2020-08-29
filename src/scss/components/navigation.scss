@@ -43,10 +43,15 @@ $navbar-text-color: $color-white-100;
     z-index: 10;
 
     a {
+      @include typography-links($navbar-text-color, $navbar-text-color, 0);
       display: inline-block;
       margin: 0;
       padding: .25rem;
       width: 100%;
+
+      &:hover {
+        color: $color-primary;
+      }
     }
 
     i {

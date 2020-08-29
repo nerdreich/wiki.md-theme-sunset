@@ -131,6 +131,9 @@ function getPageLinksHTML(
     if ($wiki->exists() && $user->mayDelete($wiki->getWikiPath())) {
         $html .= '<a href="?action=delete"><i class="fas fa-trash"></i> ' . ___('Delete') . '</a><br>';
     }
+    if ($user->mayAdmin($wiki->getWikiPath())) {
+        $html .= '<a href="./?admin=folder"><i class="fas fa-folder"></i> ' . ___('Permissions') . '</a><br>';
+    }
     if ($user->isLoggedIn()) {
         $html .= '<p>' . $_SESSION['username'] . '</p>';
         $html .= '<a href="?auth=logout"><i class="fas fa-sign-out-alt"></i> ' . ___('Logout') . '</a>';
@@ -230,7 +233,7 @@ function outputHeader(array $config, string $path, string $title, string $descri
 function outputNavbar(at\nerdreich\Wiki $wiki, at\nerdreich\UserSession $user)
 {
     ?>
-<section class="section-has-bg navbar">
+<section class="navbar">
   <nav class="container">
     <div class="row">
       <div class="col-12">
@@ -257,7 +260,7 @@ function outputNavbar(at\nerdreich\Wiki $wiki, at\nerdreich\UserSession $user)
 function outputBanner(at\nerdreich\Wiki $wiki)
 {
     ?>
-<section class="section-has-bg banner">
+<section class="banner">
   <nav class="container">
     <div class="row">
       <div class="col-12">
