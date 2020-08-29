@@ -36,44 +36,56 @@ function historyDate($date, $config): string
     return $date->format($config['datetime']);
 }
 
+$restoreEnabled = true;
+
 ?><section class="section-main container page-history">
- <div class="row">
-   <div class="col-12 col-md-8 col-lg-9">
-     <h2><?php __('History for %s', $wiki->getWikiPath()); ?></h2>
-     <?php if ($wiki->isDirty()) { ?>
-       <p><?php __('The checksum of this page is invalid. Save the page in wiki.md again to correct this.') ?>
-     <?php } ?>
-     <dl class="timeline">
-       <?php if ($history === null) { ?>
-         <dt id="history-0">
-           <p><?php __('No history available.'); ?></p>
-         </dt>
-       <?php } else { ?>
-           <?php $version = count($history) + 1; ?>
-           <dt id="history-<?php echo $version; ?>">
-             <h2 class="h4"><?php __('Version'); ?> <?php echo $version--; ?> (<?php __('current'); ?>)</h2>
-             <p>
-               <span class="minor"><?php __('by %s at %s', $wiki->getAuthor(), historyDate($wiki->getDate(), $config)); ?></span>
-             </p>
-           </dt>
-       <?php } ?>
-       <?php foreach (array_reverse($wiki->getHistory() ?? []) as $change) { ?>
-         <dd><?php echo diff2html(gzuncompress(base64_decode($change['diff']))); ?></dd>
-         <dt id="history-<?php echo $version; ?>">
-           <h2 class="h4"><?php __('Version'); ?> <?php echo $version; ?></h2>
-           <p>
-             <span class="minor"><?php __('by %s at %s', $change['author'], historyDate($change['date'], $config)); ?></span>
-             <?php if (!$wiki->isDirty()) { ?>
-               - <a href="?action=restore&version=<?php echo $version--; ?>"><?php __('restore'); ?></a>
-             <?php } ?>
-           </p>
-         </dt>
-       <?php } ?>
-     </dl>
-   </div>
-   <nav class="col-12 col-md-4 col-lg-3 sidenav">
-     <?php echo $wiki->getSnippetHTML('nav'); ?>
-   </nav>
- </div>
+  <div class="row">
+    <div class="col-12 col-md-8 col-lg-9">
+      <h2><?php __('History for %s', $wiki->getWikiPath()); ?></h2>
+      <?php if ($wiki->isDirty()) { ?>
+        <p><?php __('The checksum of this page is invalid. Save the page in wiki.md again to correct this.') ?>
+      <?php } ?>
+
+      <dl class="timeline">
+        <?php if ($history === null) { ?>
+          <dt id="history-0">
+            <p>
+              <?php __('This page has not been saved by wiki.md.'); ?>
+              <?php __('No history is available.'); ?>
+            </p>
+          </dt>
+        <?php } else { ?>
+            <?php $version = count($history) + 1; ?>
+            <dt id="history-<?php echo $version; ?>">
+              <h2 class="h4"><?php __('Version'); ?> <?php echo $version--; ?> (<?php __('current'); ?>)</h2>
+              <p>
+                <span class="minor"><?php __('by %s at %s', $wiki->getAuthor(), historyDate($wiki->getDate(), $config)); ?></span>
+              </p>
+            </dt>
+        <?php } ?>
+        <?php foreach (array_reverse($wiki->getHistory() ?? []) as $change) { ?>
+          <dd><?php if ($change['diff'] !== null) {
+                    echo diff2html(gzuncompress(base64_decode($change['diff'])));
+              } else {
+                    echo ___('No record available.');
+                    $restoreEnabled = false;
+              } ?></dd>
+          <dt id="history-<?php echo $version; ?>">
+            <h2 class="h4"><?php __('Version'); ?> <?php echo $version; ?></h2>
+            <p>
+              <span class="minor"><?php __('by %s at %s', $change['author'], historyDate($change['date'], $config)); ?></span>
+              <?php if ($restoreEnabled && !$wiki->isDirty()) { ?>
+                - <a href="?action=restore&version=<?php echo $version; ?>"><?php __('restore'); ?></a>
+              <?php } ?>
+            </p>
+          </dt>
+            <?php $version--;
+        } ?>
+      </dl>
+    </div>
+    <nav class="col-12 col-md-4 col-lg-3 sidenav">
+      <?php echo beautify($wiki->getSnippetHTML('nav')); ?>
+    </nav>
+  </div>
 </section>
 <?php outputFooter($wiki, $config); ?>
