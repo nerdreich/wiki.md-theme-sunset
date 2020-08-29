@@ -1,3 +1,7 @@
+# v1.0.0
+
+* updated to wiki.md v1.0.0
+
 # v0.3.0
 
 * backported changes of Elegant theme 0.5.0
