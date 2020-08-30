@@ -84,7 +84,7 @@ $restoreEnabled = true;
       </dl>
     </div>
     <nav class="col-12 col-md-4 col-lg-3 sidenav">
-      <?php echo beautify($wiki->getSnippetHTML('nav')); ?>
+      <?php echo $wiki->getSnippetHTML('nav'); ?>
     </nav>
   </div>
 </section>

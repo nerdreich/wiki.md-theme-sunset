@@ -42,10 +42,10 @@ outputBanner($wiki);
   <div class="row">
     <div class="col-12 col-lg-9">
       <?php echo $wiki->getTitle() !== '' ? '<h1>' . htmlspecialchars($wiki->getTitle()) . '</h1>' : ''; ?>
-      <?php echo beautify($wiki->getContentHTML()); ?>
+      <?php echo $wiki->getContentHTML(); ?>
     </div>
     <nav class="col-12 col-lg-3 sidenav">
-      <?php echo beautify($wiki->getSnippetHTML('nav')); ?>
+      <?php echo $wiki->getSnippetHTML('nav'); ?>
     </nav>
   </div>
 </section>

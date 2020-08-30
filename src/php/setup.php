@@ -111,6 +111,24 @@ $wiki->registerMacro('paginate', function (
     return $snippet;
 });
 
+// --- register filters --------------------------------------------------------
+
+$wiki->registerFilter('html', 'fontawesome', function (string $html, string $path): string {
+    // fontawesome instead of certain emojis
+    $html = str_replace('👤', '<i class="fas fa-user"></i>', $html);
+    $html = str_replace('👥', '<i class="fas fa-users"></i>', $html);
+    $html = str_replace('🎬', '<i class="fas fa-film"></i>', $html);
+    $html = str_replace('📖', '<i class="fas fa-theater-masks"></i>', $html);
+    $html = str_replace('♖', '<i class="fas fa-chess-knight"></i>', $html);
+    $html = str_replace('📅', '<i class="far fa-calendar-alt"></i>', $html);
+    $html = str_replace('🗄️', '<i class="fas fa-archive"></i>', $html);
+    $html = str_replace('💬', '<i class="fas fa-theater-masks"></i>', $html);
+    $html = str_replace('🏠', '<i class="fas fa-home"></i>', $html);
+    $html = str_replace('🗺', '<i class="fas fa-map-marked-alt"></i>', $html);
+    $html = str_replace('🪶', '<i class="fas fa-feather-alt"></i>', $html);
+    return $html;
+});
+
 // --- HTML snippets -----------------------------------------------------------
 
 function getPageLinksHTML(
@@ -237,7 +255,7 @@ function outputNavbar(at\nerdreich\Wiki $wiki, at\nerdreich\UserSession $user)
   <nav class="container">
     <div class="row">
       <div class="col-12">
-        <?php echo beautify($wiki->getSnippetHTML('topnav')); ?>
+        <?php echo $wiki->getSnippetHTML('topnav'); ?>
         <div>
           <input id="wiki-burger" type="checkbox">
           <label for="wiki-burger"><i class="fas fa-cog"></i></label>
@@ -264,7 +282,7 @@ function outputBanner(at\nerdreich\Wiki $wiki)
   <nav class="container">
     <div class="row">
       <div class="col-12">
-        <?php echo beautify($wiki->getSnippetHTML('banner')); ?>
+        <?php echo $wiki->getSnippetHTML('banner'); ?>
       </div>
     </div>
   </nav>
@@ -300,28 +318,3 @@ function outputFooter(at\nerdreich\Wiki $wiki)
 }
 
 // --- other helpers -----------------------------------------------------------
-
-/**
- * Do various gentle content improvements, like icons ...
- *
- * @param string $html HTML to improve.
- * @return string Improved HTML.
- */
-function beautify(
-    string $html
-): string {
-    // fontawesome instead of emoji
-    $html = str_replace('👤', '<i class="fas fa-user"></i>', $html);
-    $html = str_replace('👥', '<i class="fas fa-users"></i>', $html);
-    $html = str_replace('🎬', '<i class="fas fa-film"></i>', $html);
-    $html = str_replace('📖', '<i class="fas fa-theater-masks"></i>', $html);
-    $html = str_replace('♖', '<i class="fas fa-chess-knight"></i>', $html);
-    $html = str_replace('📅', '<i class="far fa-calendar-alt"></i>', $html);
-    $html = str_replace('🗄️', '<i class="fas fa-archive"></i>', $html);
-    $html = str_replace('💬', '<i class="fas fa-theater-masks"></i>', $html);
-    $html = str_replace('🏠', '<i class="fas fa-home"></i>', $html);
-    $html = str_replace('🗺', '<i class="fas fa-map-marked-alt"></i>', $html);
-    $html = str_replace('🪶', '<i class="fas fa-feather-alt"></i>', $html);
-
-    return $html;
-}
