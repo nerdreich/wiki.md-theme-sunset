@@ -18,7 +18,7 @@
  * along with Sunset. If not, see <https://www.gnu.org/licenses/>.
  */
 
-outputHeader($wiki, ___('Login'));
+outputHeader($wiki);
 outputNavbar($wiki);
 outputBanner($wiki);
 
@@ -26,17 +26,9 @@ outputBanner($wiki);
 <section class="section-main container">
   <div class="row">
     <div class="col-12">
-      <h2><?php __('Login required'); ?></h2>
-      <form action="?<?php echo $wiki->getActions(); ?>&amp;auth=login" method="post">
-        <?php if (!$wiki->user->isLoginSimple()) { ?>
-        <label for="username" class="in-border"><?php __('Username'); ?></label>
-        <input id="username" type="text" name="username" required autofocus>
-        <?php } ?>
-        <label for="password" class="in-border"><?php __('Password'); ?></label>
-        <input id="password" type="password" name="password" required<?php echo $wiki->user->isLoginSimple() ? ' autofocus' : ''; ?>>
-        <input type="submit" class="primary" value="<?php __('Login'); ?>">
-      </form>
+        <?php require $pluginFileFS; ?>
     </div>
   </div>
 </section>
+
 <?php outputFooter($wiki); ?>

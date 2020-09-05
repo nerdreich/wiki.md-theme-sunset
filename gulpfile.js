@@ -46,6 +46,7 @@ gulp.task('test-php', function () {
       warningSeverity: 0
     }))
     .pipe(phpcs.reporter('log'))
+    .pipe(phpcs.reporter('fail'))
 })
 
 gulp.task('tests', gulp.series('test-sass', 'test-php'))

@@ -18,21 +18,21 @@
  * along with Sunset. If not, see <https://www.gnu.org/licenses/>.
  */
 
-outputHeader($config, $wiki->getWikiPath(), ___('Not found'), '');
-outputNavbar($wiki, $user);
+outputHeader($wiki, ___('Not found'), '');
+outputNavbar($wiki);
 outputBanner($wiki);
 
 ?>
 <section class="section-main container">
   <div class="row">
     <div class="col-12">
-      <p><?php __('Page %s does not exist.', $wiki->getLocation()); ?></p>
-      <?php if ($user->mayCreate($wiki->getLocation())) { ?>
-        <form action="?action=createPage" method="post">
+      <p><?php __('Page %s does not exist.', $wiki->core->getLocation()); ?></p>
+      <?php if ($wiki->core->mayCreatePath()) { ?>
+        <form action="?page=create" method="post">
           <input type="submit" class="primary" value="<?php __('Create page'); ?>">
         </form>
       <?php } ?>
     </div>
   </div>
 </section>
-<?php outputFooter($wiki, $config); ?>
+<?php outputFooter($wiki); ?>
