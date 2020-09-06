@@ -18,16 +18,16 @@
  * along with Sunset. If not, see <https://www.gnu.org/licenses/>.
  */
 
-outputHeader($config, $wiki->getWikiPath(), ___('Error'), '');
-outputNavbar($wiki, $user);
+outputHeader($wiki, ___('Error'));
+outputNavbar($wiki);
 outputBanner($wiki);
 
 ?>
 <section class="section-main container">
   <div class="row">
     <div class="col-12">
-      <p><?php __('Sorry, an error occured.'); ?></p>
+      <p><?php __('Sorry, an error occured (or you don\'t have permission to do this).'); ?></p>
     </div>
   </div>
 </section>
-<?php outputFooter($wiki, $config); ?>
+<?php outputFooter($wiki); ?>

@@ -18,8 +18,8 @@
  * along with Sunset. If not, see <https://www.gnu.org/licenses/>.
  */
 
-outputHeader($config, $wiki->getWikiPath(), ___('Forbidden'), '');
-outputNavbar($wiki, $user);
+outputHeader($wiki, ___('Forbidden'));
+outputNavbar($wiki);
 outputBanner($wiki);
 
 ?>
@@ -30,4 +30,4 @@ outputBanner($wiki);
     </div>
   </div>
 </section>
-<?php outputFooter($wiki, $config); ?>
+<?php outputFooter($wiki); ?>

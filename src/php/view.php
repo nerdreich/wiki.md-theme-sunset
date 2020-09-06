@@ -18,20 +18,20 @@
  * along with Sunset. If not, see <https://www.gnu.org/licenses/>.
  */
 
-outputHeader($config, $wiki->getWikiPath(), $wiki->getTitle(), $wiki->getDescription());
-outputNavbar($wiki, $user);
+outputHeader($wiki, $wiki->core->getTitle(), $wiki->core->getDescription());
+outputNavbar($wiki);
 outputBanner($wiki);
 
 ?>
 <section class="section-main container">
   <div class="row">
-    <div class="col-12 col-lg-9">
-      <?php echo $wiki->getTitle() !== '' ? '<h1>' . htmlspecialchars($wiki->getTitle()) . '</h1>' : ''; ?>
-      <?php echo beautify($wiki->getContentHTML()); ?>
+    <div class="col-12 col-md-8 col-lg-9">
+      <?php $wiki->echoIf('<h1>', $wiki->core->getTitle(), '</h1>'); ?>
+      <?php echo $wiki->core->getContentHTML(); ?>
     </div>
-    <nav class="col-12 col-lg-3 sidenav">
-      <?php echo beautify($wiki->getSnippetHTML('nav')); ?>
+    <nav class="col-12 col-md-4 col-lg-3 sidenav">
+      <?php echo $wiki->core->getSnippetHTML('nav'); ?>
     </nav>
   </div>
 </section>
-<?php outputFooter($wiki, $config); ?>
+<?php outputFooter($wiki); ?>

@@ -1,3 +1,9 @@
+# v2.0.0
+
+* updated to wiki.md v2.0.0
+* fixed paginate macro
+* changed beautify() to filter
+
 # v1.0.0
 
 * updated to wiki.md v1.0.0
