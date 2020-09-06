@@ -25,6 +25,53 @@ at\nerdreich\wiki\Translate::loadLanguage(dirname(__FILE__) . '/I18N/' . $wiki->
 
 // --- register theme macros ---------------------------------------------------
 
+$wiki->core->getPlugin('macro')->registerMacro('pagelist', function (
+    ?string $primary,
+    ?array $secondary,
+    string $path
+) use ($wiki): string {
+    $dir = dirname($path);
+    $snippet = '';
+    $cols = [];
+
+    if ($secondary['cols']) {
+        $cols = explode(',', $secondary['cols']);
+    }
+
+    $snippet .= '|' . $primary . ' |';
+    foreach ($cols as $col) {
+        $snippet .= $col . ' |';
+    }
+    $snippet .= PHP_EOL;
+    $snippet .= '|---|';
+    foreach ($cols as $col) {
+        $snippet .= '---|';
+    }
+    $snippet .= PHP_EOL;
+
+    $pattern = '/^' . str_replace('*', '.*', $secondary['match']) . '$/';
+    foreach (scandir($dir) as $filename) {
+        if (preg_match($pattern, $filename)) {
+            $absFilename = $dir . '/' . $filename;
+            list($metadata, $content) = $wiki->core->loadFile($absFilename, true);
+            if ($primary === '#grouplist') {
+                $snippet .= '[' . $metadata['title'] . '](' .
+                    $wiki->core->contentFileFSToWikiPath($absFilename) . ')  ' . PHP_EOL;
+            } else {
+                $snippet .= '|[' . $metadata['title'] . '](' .
+                    $wiki->core->contentFileFSToWikiPath($absFilename) . ')|';
+                foreach ($cols as $col) {
+                    preg_match_all('/^' . $col . ':\s+(.*)/m', $content, $field);
+                    $snippet .= $field[1][0] . ' |';
+                }
+                $snippet .= PHP_EOL;
+            }
+        }
+    }
+
+    return $snippet;
+});
+
 $wiki->core->getPlugin('macro')->registerMacro('paginate', function (
     ?string $primary,
     ?array $secondary,
@@ -60,6 +107,24 @@ $wiki->core->getPlugin('macro')->registerMacro('paginate', function (
         $snippet .= ' | [→](' . ($pages[$myIndex + 1]) . ')';
     }
     return $snippet;
+});
+
+// --- register filters --------------------------------------------------------
+
+$wiki->core->registerFilter('html', 'fontawesome', function (string $html, string $path): string {
+    // fontawesome instead of certain emojis
+    $html = str_replace('👤', '<i class="fas fa-user"></i>', $html);
+    $html = str_replace('👥', '<i class="fas fa-users"></i>', $html);
+    $html = str_replace('🎬', '<i class="fas fa-film"></i>', $html);
+    $html = str_replace('📖', '<i class="fas fa-theater-masks"></i>', $html);
+    $html = str_replace('♖', '<i class="fas fa-chess-knight"></i>', $html);
+    $html = str_replace('📅', '<i class="far fa-calendar-alt"></i>', $html);
+    $html = str_replace('🗄️', '<i class="fas fa-archive"></i>', $html);
+    $html = str_replace('💬', '<i class="fas fa-theater-masks"></i>', $html);
+    $html = str_replace('🏠', '<i class="fas fa-home"></i>', $html);
+    $html = str_replace('🗺', '<i class="fas fa-map-marked-alt"></i>', $html);
+    $html = str_replace('🪶', '<i class="fas fa-feather-alt"></i>', $html);
+    return $html;
 });
 
 // --- other theme helpers -----------------------------------------------------
@@ -242,6 +307,7 @@ function outputFooter(at\nerdreich\wiki\WikiUI $wiki): void
     <div class="col-12">
       <p>
         <a class="no-icon" href="<?php echo $wiki->getRepo(); ?>">wiki.md v<?php echo $wiki->core->getVersion(); ?></a>
+        - <a class="no-icon" href="$URL$">Sunset Theme v$VERSION$</a>
         <?php if ($wiki->core->getDate() !== null) {
             echo '- ' . htmlspecialchars(___('Last saved %s', localDateString($wiki->core->getDate())));
         } ?>
