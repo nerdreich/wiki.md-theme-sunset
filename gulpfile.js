@@ -14,12 +14,29 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Sunset. If not, see <https://www.gnu.org/licenses/>.
 
-const p = require('./package.json')
+import { readFileSync } from 'fs'
 
-const gulp = require('gulp')
-const replace = require('gulp-replace')
+import autoprefixer from 'gulp-autoprefixer'
+import concat from 'gulp-concat'
+import del from 'del'
+import gulp from 'gulp'
+import gzip from 'gulp-gzip'
+import imagemin from 'gulp-imagemin'
+import imageminPngquant from 'imagemin-pngquant'
+import phpcs from 'gulp-phpcs'
+import replace from 'gulp-replace'
+import sassLint from 'gulp-sass-lint'
+import sort from 'gulp-sort'
+import tar from 'gulp-tar'
+import zip from 'gulp-zip'
 
-var dirs = {
+import dartSass from 'sass'
+import gulpSass from 'gulp-sass'
+const sass = gulpSass(dartSass)
+
+const p = JSON.parse(readFileSync('./package.json'))
+
+const dirs = {
   build: 'dist/',
   theme: 'dist/themes/' + p.name
 }
@@ -27,7 +44,6 @@ var dirs = {
 // --- testing targets ---------------------------------------------------
 
 gulp.task('test-sass', function () {
-  var sassLint = require('gulp-sass-lint')
   return gulp.src(['src/**/*.s+(a|c)ss'])
     .pipe(sassLint({ configFile: '.sass-lint.yml' }))
     .pipe(sassLint.format())
@@ -35,7 +51,6 @@ gulp.task('test-sass', function () {
 })
 
 gulp.task('test-php', function () {
-  const phpcs = require('gulp-phpcs')
   return gulp.src([
     'src/php/**/*.php'
   ])
@@ -54,7 +69,6 @@ gulp.task('tests', gulp.series('test-sass', 'test-php'))
 // --- build targets -----------------------------------------------------
 
 gulp.task('clean', function () {
-  var del = require('del')
   return del([
     [dirs.build] + '/**/*',
     [dirs.build] + '/**/.*'
@@ -70,10 +84,6 @@ gulp.task('fonts', function () {
 })
 
 gulp.task('scss', gulp.series('test-sass', function () {
-  var sass = require('gulp-sass')
-  var concat = require('gulp-concat')
-  var autoprefixer = require('gulp-autoprefixer')
-
   return gulp.src([
     'src/scss/main.scss'
     // include additional vendor-css from /node_modules here
@@ -103,9 +113,6 @@ gulp.task('I18N', function () {
 })
 
 gulp.task('favicon', function () {
-  const imagemin = require('gulp-imagemin')
-  const imageminPngquant = require('imagemin-pngquant')
-
   return gulp.src([
     'src/favicon/**/*'
   ])
@@ -129,10 +136,6 @@ gulp.task('debug', gulp.series('clean', 'dist', function () {
 }))
 
 gulp.task('package-tgz', function () {
-  const tar = require('gulp-tar')
-  const gzip = require('gulp-gzip')
-  const sort = require('gulp-sort')
-
   return gulp.src([
     dirs.build + '/themes/**/*'
   ], { base: dirs.build, dot: true })
@@ -143,9 +146,6 @@ gulp.task('package-tgz', function () {
 })
 
 gulp.task('package-zip', function () {
-  const zip = require('gulp-zip')
-  const sort = require('gulp-sort')
-
   return gulp.src([
     dirs.build + '/themes/**/*'
   ], { base: dirs.build, dot: true })
