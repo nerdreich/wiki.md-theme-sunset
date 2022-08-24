@@ -32,6 +32,8 @@ outputBanner($wiki);
             <p><?php __('Do you really want to delete this page?'); ?></p>
             <input type="submit" class="error" value="<?php __('Delete page'); ?>"><a class="btn" href="<?php echo $wiki->core->getWikiPath(); ?>"><?php __('Cancel'); ?></a>
           </form>
+        <?php } else { ?>
+          <p><?php __('You do not have the necessary permissions to do this.'); ?></p>
         <?php } ?>
       </div>
     </div>
