@@ -1,7 +1,8 @@
 {
   "name": "sunset",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "A wiki.md theme built around the Averia font family.",
+  "type": "module",
   "keywords": [
     "wiki.md",
     "theme",
@@ -9,7 +10,7 @@
     "responsive"
   ],
   "engines": {
-    "npm": ">=6.5.0"
+    "npm": ">=8.0.0"
   },
   "author": "Markus Leupold-Löwenthal",
   "license": "AGPL-3.0-or-later",
@@ -21,24 +22,30 @@
   "bugs": {
     "url": "https://github.com/nerdreich/wiki.md-theme-sunset/issues"
   },
+  "scripts": {
+    "gulp": "gulp"
+  },
   "devDependencies": {
-    "del": "5",
+    "del": "6",
+    "eslint": "^8.20.0",
+    "eslint-config-standard": "^17.0.0",
     "gulp": "4",
-    "gulp-autoprefixer": "7",
+    "gulp-autoprefixer": "8",
     "gulp-concat": "2",
     "gulp-gzip": "1",
-    "gulp-imagemin": "^7.1.0",
+    "gulp-imagemin": "8",
     "gulp-phpcs": "3",
     "gulp-replace": "1",
-    "gulp-sass": "^4.1.0",
+    "gulp-sass": "5",
     "gulp-sass-lint": "1",
     "gulp-sort": "2",
     "gulp-tar": "3",
     "gulp-zip": "5",
-    "imagemin-pngquant": "^9.0.0"
+    "imagemin-pngquant": "^9.0.1",
+    "sass": "^1.52.3"
   },
   "dependencies": {
-    "bootstrap": "^4.5"
+    "bootstrap": "^5.2"
   },
   "bgColor": "#223240"
 }

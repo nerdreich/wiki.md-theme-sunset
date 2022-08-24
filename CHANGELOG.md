@@ -1,3 +1,8 @@
+# v2.1.0
+
+* bumped dependencies, npm 8 and php 8
+* fixed spacings, added missing styles for definition lists and blockquotes
+
 # v2.0.0
 
 * updated to wiki.md v2.0.0
