@@ -159,6 +159,7 @@ code,
 kbd,
 samp {
   @include typography-font($typography-font-list-courier, 700, px(16), 1.4em);
+  color: $color-text;
   padding: .1em .25em;
 }
 
@@ -180,29 +181,29 @@ pre {
 h1,
 .h1,
 %h1 {
-  @include typography-font($typography-font-list-serif, 700, 2.5em, 1em, .025em);
+  @include typography-font($typography-font-list-serif, 700, 2.5em, 1.1em, .025em);
   border-bottom: $typography-hr;
   color: $color-white-100;
   font-style: italic;
-  margin-bottom: $spacing * 2;
-  margin-top: $spacing * 2.5;
+  margin-bottom: $spacing-huge;
+  margin-top: $spacing-huge;
 }
 
 h2,
 .h2,
 %h2 {
-  @include typography-font($typography-font-list-serif, 700, 1.75em, 1em, .025em);
+  @include typography-font($typography-font-list-serif, 700, 1.75em, 1.1em, .025em);
   color: $color-white-100;
   font-style: italic;
-  margin-top: $spacing * 2.5;
+  margin-top: $spacing-huge;
 }
 
 h3,
 .h3,
 %h3 {
-  @include typography-font($typography-font-list-serif, 700, 1.25em, 1em, .025em);
+  @include typography-font($typography-font-list-serif, 700, 1.25em, 1.25em, .025em);
   color: $color-white-100;
-  margin-top: $spacing * 2.5;
+  margin-top: $spacing-huge;
 }
 
 h4,
@@ -214,24 +215,48 @@ h5,
 h6,
 .h6,
 %h6 {
-  @include typography-font($typography-font-list-serif, 700, 1.25em, 1.15em);
+  @include typography-font($typography-font-list-serif, 700, 1.25em, .25em);
   color: $color-white-100;
-  margin-top: $spacing * 2.5;
+  margin-top: $spacing-huge;
+}
+
+ul,
+ol {
+  margin-top: 0;
+  padding-left: $spacing-large;
+
+  li,
+  li:first-child {
+    margin-top: $spacing !important; // sass-lint:disable-line no-important
+  }
 }
 
 ul {
-  padding-left: 1.25em;
+  list-style-type: disc;
 }
 
-li {
-  margin-top: .125em;
-}
-
+b,
 strong {
   color: $color-white-100;
   font-variant: small-caps;
   font-weight: 700;
   letter-spacing: .05em;
+}
+
+blockquote {
+  border-left: px(4) solid $color-line;
+  padding-left: calc($spacing-large - px(4));
+}
+
+dl {
+  dt {
+    color: $color-white-100;
+  }
+
+  dd {
+    margin-left: $spacing-large;
+    margin-top: $spacing-small;
+  }
 }
 
 hr {
