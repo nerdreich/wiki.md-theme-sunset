@@ -1,6 +1,6 @@
 {
   "name": "sunset",
-  "version": "2.1.0-dev",
+  "version": "2.1.0",
   "description": "A wiki.md theme built around the Averia font family.",
   "type": "module",
   "keywords": [
