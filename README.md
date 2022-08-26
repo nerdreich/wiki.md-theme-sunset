@@ -18,7 +18,9 @@ A wiki.md theme built around the Averia font family.
 
 ### Build from source
 
-For most users the pre-packaged `*.tar.gz`/`*.zip` should be fine. If you still want to build this theme yourself, you'll need `git`, `php` v7.3+, `npm` v8.0+ and `gulp` v4. Assuming all requirements are met, just:
+For most users the pre-packaged `*.tar.gz`/`*.zip` should be fine.
+
+If you still want to build this theme yourself, you'll need `git`, `php` v7.2+ and `npm` v8.0+. Assuming all requirements are met, just:
 
 ```
 git clone --depth 1 https://github.com/nerdreich/wiki.md-theme-sunset
