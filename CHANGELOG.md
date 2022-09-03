@@ -1,3 +1,7 @@
+# v2.1.2
+
+* tweaked spacings
+
 # v2.1.1
 
 * fixed button sizes

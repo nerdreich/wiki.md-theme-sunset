@@ -6,7 +6,7 @@ A wiki.md theme built around the Averia font family.
 
 ## Requirements
 
-* [wiki.md](https://github.com/nerdreich/wiki.md) v2.1.0
+* [wiki.md](https://github.com/nerdreich/wiki.md) v2.1.0+
 
 ## Installation
 
@@ -15,6 +15,10 @@ A wiki.md theme built around the Averia font family.
 * Extract the `*.tar.gz`/`.zip` into the `themes/` folder of your wiki.md installation.
 
 * Edit your `data/config.ini` and set the theme to `sunset`.
+
+## Upgrading
+
+* Just replace the theme's directory with the new one.
 
 ### Build from source
 
