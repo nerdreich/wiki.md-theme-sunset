@@ -1,3 +1,11 @@
+# v2.1.2
+
+* tweaked spacings
+
+# v2.1.1
+
+* fixed button sizes
+
 # v2.1.0
 
 * bumped dependencies, npm 8 and php 8
