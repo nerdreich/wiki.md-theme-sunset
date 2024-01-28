@@ -46,7 +46,7 @@ footer {
   padding-top: math.div($section-spacing, 2);
 
   *:first-child {
-    margin-top: 0;    // do not apply top spacing to first element in a cel
+    margin-top: 0; // do not apply top spacing to first element in a cel
   }
 
   *:last-child {
@@ -55,7 +55,7 @@ footer {
 }
 
 .section-main {
-  margin-top: .5em;
+  margin-top: 0.5em;
 }
 
 .section-meta {
