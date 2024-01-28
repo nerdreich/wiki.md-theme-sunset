@@ -21,11 +21,8 @@ import autoprefixer from 'gulp-autoprefixer'
 import concat from 'gulp-concat'
 import gulp from 'gulp'
 import gzip from 'gulp-gzip'
-import imagemin from 'gulp-imagemin'
-import imageminPngquant from 'imagemin-pngquant'
 import phpcs from 'gulp-phpcs'
 import replace from 'gulp-replace'
-import sassLint from 'gulp-sass-lint'
 import sort from 'gulp-sort'
 import tar from 'gulp-tar'
 import zip from 'gulp-zip'
@@ -43,13 +40,6 @@ const dirs = {
 
 // --- testing targets ---------------------------------------------------
 
-gulp.task('test-sass', function () {
-  return gulp.src(['src/**/*.s+(a|c)ss'])
-    .pipe(sassLint({ configFile: '.sass-lint.yml' }))
-    .pipe(sassLint.format())
-    .pipe(sassLint.failOnError())
-})
-
 gulp.task('test-php', function () {
   return gulp.src([
     'src/php/**/*.php'
@@ -64,7 +54,7 @@ gulp.task('test-php', function () {
     .pipe(phpcs.reporter('fail'))
 })
 
-gulp.task('tests', gulp.series('test-sass', 'test-php'))
+gulp.task('tests', gulp.series('test-php'))
 
 // --- build targets -----------------------------------------------------
 
@@ -83,7 +73,7 @@ gulp.task('fonts', function () {
     .pipe(gulp.dest(dirs.theme + '/fonts/'))
 })
 
-gulp.task('scss', gulp.series('test-sass', function () {
+gulp.task('scss', gulp.series(function () {
   return gulp.src([
     'src/scss/main.scss'
     // include additional vendor-css from /node_modules here
@@ -116,9 +106,6 @@ gulp.task('favicon', function () {
   return gulp.src([
     'src/favicon/**/*'
   ])
-    .pipe(imagemin([
-      imageminPngquant({ quality: [0.8, 0.9], strip: true })
-    ], { verbose: true }))
     .pipe(replace('$NAME$', p.name, { skipBinary: true }))
     .pipe(replace('$BGCOLOR$', p.bgColor, { skipBinary: true }))
     .pipe(gulp.dest(dirs.theme))

@@ -27,49 +27,25 @@
 @import '../../fonts/SourceCodePro/font';
 @import '../../fonts/FontAwesomeFree/font';
 
-$typography-font-list-sans-fallback:
--apple-system,
-BlinkMacSystemFont,
-'Segoe UI',
-Roboto,
-'Helvetica Neue',
-Arial,
-sans-serif,
-'Apple Color Emoji',
-'Segoe UI Emoji',
-'Segoe UI Symbol';
+$typography-font-list-sans-fallback: -apple-system, BlinkMacSystemFont,
+  'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji',
+  'Segoe UI Emoji', 'Segoe UI Symbol';
 
-$typography-font-list-serif-fallback:
-'Lucida Bright',
-Lucidabright,
-'Lucida Serif',
-Lucida,
-'DejaVu Serif',
-'Bitstream Vera Serif',
-'Liberation Serif',
-Georgia,
-serif;
+$typography-font-list-serif-fallback: 'Lucida Bright', Lucidabright,
+  'Lucida Serif', Lucida, 'DejaVu Serif', 'Bitstream Vera Serif',
+  'Liberation Serif', Georgia, serif;
 
-$typography-font-list-courier-fallback:
-SFMono-Regular,
-Menlo,
-Monaco,
-Consolas,
-'Liberation Mono',
-'Courier New',
-monospace;
+$typography-font-list-courier-fallback: SFMono-Regular, Menlo, Monaco, Consolas,
+  'Liberation Mono', 'Courier New', monospace;
 
-$typography-font-list-sans:
-'Averia Sans Libre',
-$typography-font-list-sans-fallback;
+$typography-font-list-sans: 'Averia Sans Libre',
+  $typography-font-list-sans-fallback;
 
-$typography-font-list-serif:
-'Averia Serif Libre',
-$typography-font-list-serif-fallback;
+$typography-font-list-serif: 'Averia Serif Libre',
+  $typography-font-list-serif-fallback;
 
-$typography-font-list-courier:
-'Source Code Pro',
-$typography-font-list-courier-fallback;
+$typography-font-list-courier: 'Source Code Pro',
+  $typography-font-list-courier-fallback;
 
 $typography-body-font-size: px(18);
 
@@ -77,7 +53,7 @@ $typography-hr: px(2) solid $color-white-10a;
 
 // ---------------------------------------------------------------------
 
-@mixin typography-font (
+@mixin typography-font(
   $font-family,
   $font-weight: 300,
   $font-size: 1em,
@@ -112,7 +88,8 @@ $typography-hr: px(2) solid $color-white-10a;
 ) {
   $gradient-transparent: linear-gradient(transparent, transparent);
 
-  background-image: $gradient-transparent, $gradient-transparent, linear-gradient(to right, $underline-color, $underline-color);
+  background-image: $gradient-transparent, $gradient-transparent,
+    linear-gradient(to right, $underline-color, $underline-color);
   background-position: left bottom 3px; // depends on underline
   background-repeat: no-repeat;
   background-size: 100% $underline-height;
@@ -125,7 +102,8 @@ $typography-hr: px(2) solid $color-white-10a;
   &:hover {
     @include set-property-if-not(color, $color, $color-hover);
 
-    background-image: $gradient-transparent, $gradient-transparent, linear-gradient(to right, $underline-color-hover, $underline-color-hover);
+    background-image: $gradient-transparent, $gradient-transparent,
+      linear-gradient(to right, $underline-color-hover, $underline-color-hover);
     text-decoration: none;
   }
 }
@@ -142,14 +120,33 @@ body {
 }
 
 body {
-  @include typography-font($typography-font-list-sans, 400, $typography-body-font-size, 1.6em, .025em);
+  @include typography-font(
+    $typography-font-list-sans,
+    400,
+    $typography-body-font-size,
+    1.6em,
+    0.025em
+  );
+
   color: $color-text;
 
   a {
-    @include typography-links($color-primary, $color-white-100, 1px, transparent, $color-primary);
+    @include typography-links(
+      $color-primary,
+      $color-white-100,
+      1px,
+      transparent,
+      $color-primary
+    );
 
     &.broken {
-      @include typography-links($color-negative, $color-text, 1px, $color-negative, $color-negative);
+      @include typography-links(
+        $color-negative,
+        $color-text,
+        1px,
+        $color-negative,
+        $color-negative
+      );
     }
   }
 }
@@ -159,12 +156,13 @@ code,
 kbd,
 samp {
   @include typography-font($typography-font-list-courier, 700, px(16), 1.4em);
+
   color: $color-text;
-  padding: .1em .25em;
+  padding: 0.1em 0.25em;
 }
 
 pre {
-  padding: .75em;
+  padding: 0.75em;
 
   code {
     padding: 0;
@@ -172,8 +170,15 @@ pre {
 }
 
 .h0,
-%h0, {
-  @include typography-font($typography-font-list-serif, 700, 2.5em, 1em, .025em);
+%h0 {
+  @include typography-font(
+    $typography-font-list-serif,
+    700,
+    2.5em,
+    1em,
+    0.025em
+  );
+
   color: $color-white-100;
   text-transform: uppercase;
 }
@@ -181,7 +186,14 @@ pre {
 h1,
 .h1,
 %h1 {
-  @include typography-font($typography-font-list-serif, 700, 2.5em, 1.1em, .025em);
+  @include typography-font(
+    $typography-font-list-serif,
+    700,
+    2.5em,
+    1.1em,
+    0.025em
+  );
+
   border-bottom: $typography-hr;
   color: $color-white-100;
   font-style: italic;
@@ -192,7 +204,14 @@ h1,
 h2,
 .h2,
 %h2 {
-  @include typography-font($typography-font-list-serif, 700, 1.75em, 1.1em, .025em);
+  @include typography-font(
+    $typography-font-list-serif,
+    700,
+    1.75em,
+    1.1em,
+    0.025em
+  );
+
   color: $color-white-100;
   font-style: italic;
   margin-top: $spacing-huge;
@@ -201,7 +220,14 @@ h2,
 h3,
 .h3,
 %h3 {
-  @include typography-font($typography-font-list-serif, 700, 1.25em, 1.25em, .025em);
+  @include typography-font(
+    $typography-font-list-serif,
+    700,
+    1.25em,
+    1.25em,
+    0.025em
+  );
+
   color: $color-white-100;
   margin-top: $spacing-huge;
 }
@@ -215,7 +241,8 @@ h5,
 h6,
 .h6,
 %h6 {
-  @include typography-font($typography-font-list-serif, 700, 1.25em, .25em);
+  @include typography-font($typography-font-list-serif, 700, 1.25em, 0.25em);
+
   color: $color-white-100;
   margin-top: $spacing-huge;
 }
@@ -241,7 +268,7 @@ strong {
   color: $color-white-100;
   font-variant: small-caps;
   font-weight: 700;
-  letter-spacing: .05em;
+  letter-spacing: 0.05em;
 }
 
 blockquote {
@@ -270,8 +297,8 @@ hr {
 a[href^='http:']:not(.no-icon)::after,
 a[href^='https:']:not(.no-icon)::after {
   content: '⇗';
-  font-size: .75em;
-  padding-bottom: .25em;
+  font-size: 0.75em;
+  padding-bottom: 0.25em;
   position: relative;
-  top: -.5em;
+  top: -0.5em;
 }

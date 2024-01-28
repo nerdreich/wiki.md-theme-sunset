@@ -1,3 +1,8 @@
+# v2.1.3
+
+* bumped to Bootstrap 5.3
+* changed wording of macro paginate from 'Page' to 'Entry'
+
 # v2.1.2
 
 * tweaked spacings

@@ -1,6 +1,6 @@
 # wiki.md-theme-sunset
 
-A wiki.md theme built around the Averia font family.
+A [wiki.md](https://github.com/nerdreich/wiki.md) theme built around the Averia font family.
 
 ![wiki.md](preview.png)
 
@@ -16,7 +16,7 @@ A wiki.md theme built around the Averia font family.
 
 * Edit your `data/config.ini` and set the theme to `sunset`.
 
-## Upgrading
+### Upgrading
 
 * Just replace the theme's directory with the new one.
 
