@@ -102,7 +102,7 @@ $wiki->core->getPlugin('macro')->registerMacro('paginate', function (
     if ($myIndex > 0) {
         $snippet .= '[←](' . ($pages[$myIndex - 1]) . ') | ';
     }
-    $snippet .= ___('Page %d of %d', $myIndex + 1, count($pages));
+    $snippet .= ___('Entry %d of %d', $myIndex + 1, count($pages));
     if ($myIndex < sizeof($pages) - 1) {
         $snippet .= ' | [→](' . ($pages[$myIndex + 1]) . ')';
     }
