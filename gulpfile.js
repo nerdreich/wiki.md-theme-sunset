@@ -21,13 +21,12 @@ import autoprefixer from 'gulp-autoprefixer'
 import concat from 'gulp-concat'
 import gulp from 'gulp'
 import gzip from 'gulp-gzip'
-import phpcs from 'gulp-phpcs'
 import replace from 'gulp-replace'
 import sort from 'gulp-sort'
 import tar from 'gulp-tar'
 import zip from 'gulp-zip'
 
-import dartSass from 'sass'
+import * as dartSass from 'sass'
 import gulpSass from 'gulp-sass'
 const sass = gulpSass(dartSass)
 
@@ -38,34 +37,16 @@ const dirs = {
   theme: 'dist/themes/' + p.name
 }
 
-// --- testing targets ---------------------------------------------------
-
-gulp.task('test-php', function () {
-  return gulp.src([
-    'src/php/**/*.php'
-  ])
-    .pipe(phpcs({
-      bin: 'tools/phpcs.phar',
-      standard: 'PSR12',
-      colors: 1,
-      warningSeverity: 0
-    }))
-    .pipe(phpcs.reporter('log'))
-    .pipe(phpcs.reporter('fail'))
-})
-
-gulp.task('tests', gulp.series('test-php'))
-
 // --- build targets -----------------------------------------------------
 
-gulp.task('clean', async function () {
+gulp.task('clean', async () => {
   return await deleteAsync([
     [dirs.build] + '/**/*',
     [dirs.build] + '/**/.*'
   ])
 })
 
-gulp.task('fonts', function () {
+gulp.task('fonts', () => {
   return gulp.src([
     'src/fonts/*/*woff',
     'src/fonts/*/*woff2'
@@ -73,7 +54,7 @@ gulp.task('fonts', function () {
     .pipe(gulp.dest(dirs.theme + '/fonts/'))
 })
 
-gulp.task('scss', gulp.series(function () {
+gulp.task('scss', () => {
   return gulp.src([
     'src/scss/main.scss'
     // include additional vendor-css from /node_modules here
@@ -83,9 +64,9 @@ gulp.task('scss', gulp.series(function () {
     .pipe(sass({ outputStyle: 'compressed' }))
     .pipe(autoprefixer())
     .pipe(gulp.dest(dirs.theme))
-}))
+})
 
-gulp.task('php', gulp.series('test-php', function () {
+gulp.task('php', () => {
   return gulp.src([
     'src/php/**/*.php'
   ])
@@ -93,16 +74,16 @@ gulp.task('php', gulp.series('test-php', function () {
     .pipe(replace('$URL$', p.homepage, { skipBinary: true }))
     .pipe(replace('$BGCOLOR$', p.bgColor, { skipBinary: true }))
     .pipe(gulp.dest(dirs.theme))
-}))
+})
 
-gulp.task('I18N', function () {
+gulp.task('I18N', () => {
   return gulp.src([
     'src/I18N/**/*'
   ])
     .pipe(gulp.dest(dirs.theme + '/I18N'))
 })
 
-gulp.task('favicon', function () {
+gulp.task('favicon', () => {
   return gulp.src([
     'src/favicon/**/*'
   ])
@@ -141,4 +122,4 @@ gulp.task('package-zip', function () {
     .pipe(gulp.dest(dirs.build))
 })
 
-gulp.task('release', gulp.series('clean', 'dist', 'package-tgz', 'package-zip'))
+gulp.task('package', gulp.series('clean', 'dist', 'package-tgz', 'package-zip'))

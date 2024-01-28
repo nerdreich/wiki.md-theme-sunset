@@ -1,3 +1,7 @@
+# v2.1.4
+
+* moved phpcs from gulp to npm/package.json
+
 # v2.1.3
 
 * bumped to Bootstrap 5.3
