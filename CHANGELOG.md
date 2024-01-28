@@ -1,5 +1,6 @@
-# v2.1.4
+# v2.2.0
 
+* moved mono font from Source Code Pro to Noto Sans Mono (variable 75%)
 * moved phpcs from gulp to npm/package.json
 
 # v2.1.3
