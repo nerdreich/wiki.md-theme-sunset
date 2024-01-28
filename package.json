@@ -1,6 +1,6 @@
 {
   "name": "sunset",
-  "version": "2.1.3",
+  "version": "2.2.0",
   "description": "A wiki.md theme built around the Averia font family.",
   "type": "module",
   "keywords": [
@@ -24,10 +24,12 @@
   },
   "scripts": {
     "dist": "gulp dist",
-    "release": "npm-run-all lint gulp:release",
+    "package": "npm-run-all lint gulp:package",
     "gulp": "gulp",
-    "gulp:release": "gulp release",
-    "lint": "npm-run-all lint:prettier lint:stylelint lint:eslint",
+    "gulp:package": "gulp package",
+    "lint": "npm-run-all lint:prettier lint:stylelint lint:eslint lint:phpcbf lint:phpcs",
+    "lint:phpcbf": "tools/phpcbf.phar --standard=PSR12 src/php/",
+    "lint:phpcs": "tools/phpcs.phar --standard=PSR12 src/php/",
     "lint:eslint": "eslint --ext .js,.mjs .",
     "lint:prettier": "prettier -w 'src/**/*.scss'",
     "lint:stylelint": "stylelint --fix 'src/**/*.scss'"
@@ -40,7 +42,6 @@
     "gulp-autoprefixer": "9",
     "gulp-concat": "2",
     "gulp-gzip": "1",
-    "gulp-phpcs": "3",
     "gulp-replace": "1",
     "gulp-sass": "5",
     "gulp-sort": "2",

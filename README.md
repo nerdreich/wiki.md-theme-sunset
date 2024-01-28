@@ -30,7 +30,7 @@ If you still want to build this theme yourself, you'll need `git`, `php` v7.2+ a
 git clone --depth 1 https://github.com/nerdreich/wiki.md-theme-sunset
 cd wiki.md-theme-sunset
 npm install
-npm run gulp release
+npm run package
 ```
 
 Afterwards, the archives can be found in the `dist/` folder.

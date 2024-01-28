@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Markus Leupold-Löwenthal
+ * Copyright 2020-2024 Markus Leupold-Löwenthal
  *
  * This file is part of wiki.md-theme-sunset (Sunset).
  *
@@ -33,7 +33,9 @@ outputBanner($wiki);
         <input id="username" type="text" name="username" required autofocus>
         <?php } ?>
         <label for="password" class="in-border"><?php __('Password'); ?></label>
-        <input id="password" type="password" name="password" required<?php echo $wiki->user->isLoginSimple() ? ' autofocus' : ''; ?>>
+        <input id="password" type="password" name="password" required<?php
+            echo $wiki->user->isLoginSimple() ? ' autofocus' : '';
+        ?>>
         <input type="submit" class="primary" value="<?php __('Login'); ?>">
       </form>
     </div>
