@@ -1,3 +1,7 @@
+# v2.3.0
+
+* added remember-author feature across logouts (requires js)
+
 # v2.2.0
 
 * moved mono font from Source Code Pro to Noto Sans Mono (variable 75%)

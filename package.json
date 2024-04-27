@@ -1,6 +1,6 @@
 {
   "name": "sunset",
-  "version": "2.2.0",
+  "version": "2.3.0-dev1",
   "description": "A wiki.md theme built around the Averia font family.",
   "type": "module",
   "keywords": [
@@ -35,6 +35,10 @@
     "lint:stylelint": "stylelint --fix 'src/**/*.scss'"
   },
   "devDependencies": {
+    "@babel/core": "^7.23.2",
+    "@babel/preset-env": "^7.23.2",
+    "babelify": "^10.0.0",
+    "browserify": "^17.0.0",
     "del": "7",
     "eslint": "^8.56.0",
     "eslint-config-standard": "^17.1.0",
@@ -54,7 +58,8 @@
     "stylelint-config-sass-guidelines": "^11.0.0",
     "stylelint-config-standard": "^36.0.0",
     "stylelint-order": "^6.0.4",
-    "stylelint-scss": "^6.1.0"
+    "stylelint-scss": "^6.1.0",
+    "vinyl-source-stream": "^2.0.0"
   },
   "dependencies": {
     "bootstrap": "^5.3.2"

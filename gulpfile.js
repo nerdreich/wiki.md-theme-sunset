@@ -18,12 +18,14 @@ import { readFileSync } from 'fs'
 import { deleteAsync } from 'del'
 
 import autoprefixer from 'gulp-autoprefixer'
+import browserify from 'browserify'
 import concat from 'gulp-concat'
 import gulp from 'gulp'
 import gzip from 'gulp-gzip'
 import replace from 'gulp-replace'
 import sort from 'gulp-sort'
 import tar from 'gulp-tar'
+import vinylSource from 'vinyl-source-stream'
 import zip from 'gulp-zip'
 
 import * as dartSass from 'sass'
@@ -44,6 +46,18 @@ gulp.task('clean', async () => {
     [dirs.build] + '/**/*',
     [dirs.build] + '/**/.*'
   ])
+})
+
+gulp.task('js', () => {
+  return browserify([
+    'src/js/main.js'
+  ])
+    .transform('babelify', {
+      presets: ['@babel/preset-env']
+    })
+    .bundle()
+    .pipe(vinylSource('main.js'))
+    .pipe(gulp.dest(dirs.theme))
 })
 
 gulp.task('fonts', () => {
@@ -92,7 +106,7 @@ gulp.task('favicon', () => {
     .pipe(gulp.dest(dirs.theme))
 })
 
-gulp.task('theme', gulp.parallel('fonts', 'scss', 'php', 'favicon', 'I18N'))
+gulp.task('theme', gulp.parallel('fonts', 'scss', 'php', 'js', 'favicon', 'I18N'))
 
 gulp.task('dist', gulp.series('clean', 'theme'))
 
