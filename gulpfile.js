@@ -62,7 +62,6 @@ gulp.task('js', () => {
 
 gulp.task('fonts', () => {
   return gulp.src([
-    'src/fonts/*/*woff',
     'src/fonts/*/*woff2'
   ])
     .pipe(gulp.dest(dirs.theme + '/fonts/'))

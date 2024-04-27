@@ -1,6 +1,7 @@
 # v2.3.0
 
 * added remember-author feature across logouts (requires js)
+* removed woff fonts
 
 # v2.2.0
 
