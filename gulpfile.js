@@ -63,7 +63,8 @@ gulp.task('js', () => {
 gulp.task('fonts', () => {
   return gulp.src([
     'src/fonts/*/*woff2'
-  ])
+  ],
+  { encoding: false })
     .pipe(gulp.dest(dirs.theme + '/fonts/'))
 })
 
@@ -71,10 +72,11 @@ gulp.task('scss', () => {
   return gulp.src([
     'src/scss/main.scss'
     // include additional vendor-css from /node_modules here
-  ])
+  ],
+  { encoding: false })
     .pipe(concat('style.css'))
     .pipe(replace('$VERSION$', p.version, { skipBinary: true }))
-    .pipe(sass({ outputStyle: 'compressed' }))
+    .pipe(sass({ outputStyle: 'compressed', quietDeps: true }))
     .pipe(autoprefixer())
     .pipe(gulp.dest(dirs.theme))
 })
@@ -82,7 +84,8 @@ gulp.task('scss', () => {
 gulp.task('php', () => {
   return gulp.src([
     'src/php/**/*.php'
-  ])
+  ],
+  { encoding: false })
     .pipe(replace('$VERSION$', p.version, { skipBinary: true }))
     .pipe(replace('$URL$', p.homepage, { skipBinary: true }))
     .pipe(replace('$BGCOLOR$', p.bgColor, { skipBinary: true }))
@@ -92,14 +95,15 @@ gulp.task('php', () => {
 gulp.task('I18N', () => {
   return gulp.src([
     'src/I18N/**/*'
-  ])
+  ],
+  { encoding: false })
     .pipe(gulp.dest(dirs.theme + '/I18N'))
 })
 
 gulp.task('favicon', () => {
   return gulp.src([
     'src/favicon/**/*'
-  ])
+  ], { encoding: false })
     .pipe(replace('$NAME$', p.name, { skipBinary: true }))
     .pipe(replace('$BGCOLOR$', p.bgColor, { skipBinary: true }))
     .pipe(gulp.dest(dirs.theme))
@@ -119,7 +123,7 @@ gulp.task('debug', gulp.series('clean', 'dist', function () {
 gulp.task('package-tgz', function () {
   return gulp.src([
     dirs.build + '/themes/**/*'
-  ], { base: dirs.build, dot: true })
+  ], { base: dirs.build, dot: true, encoding: false })
     .pipe(sort())
     .pipe(tar('wiki.md-theme-sunset-' + p.version + '.tar'))
     .pipe(gzip({ gzipOptions: { level: 9 } }))
@@ -129,7 +133,7 @@ gulp.task('package-tgz', function () {
 gulp.task('package-zip', function () {
   return gulp.src([
     dirs.build + '/themes/**/*'
-  ], { base: dirs.build, dot: true })
+  ], { base: dirs.build, dot: true, encoding: false })
     .pipe(sort())
     .pipe(zip('wiki.md-theme-sunset-' + p.version + '.zip'))
     .pipe(gulp.dest(dirs.build))

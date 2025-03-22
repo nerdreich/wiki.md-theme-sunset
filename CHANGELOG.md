@@ -1,3 +1,7 @@
+# v2.3.1
+
+* updated build tools
+
 # v2.3.0
 
 * added remember-author feature across logouts (requires js)
