@@ -140,3 +140,12 @@ gulp.task('package-zip', function () {
 })
 
 gulp.task('package', gulp.series('clean', 'dist', 'package-tgz', 'package-zip'))
+
+gulp.task(
+  'local',
+  gulp.series('clean', 'dist', () => {
+    return gulp
+      .src([`${dirs.theme}/**/*`], { dot: true, encoding: false })
+      .pipe(gulp.dest('.dist-local'))
+  })
+)
