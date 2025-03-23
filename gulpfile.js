@@ -50,7 +50,9 @@ gulp.task('clean', async () => {
 
 gulp.task('js', () => {
   return browserify([
-    'src/js/main.js'
+    'src/js/hotkeys.js',
+    'src/js/main.js',
+    'src/js/textarea.js'
   ])
     .transform('babelify', {
       presets: ['@babel/preset-env']

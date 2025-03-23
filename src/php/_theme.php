@@ -215,7 +215,7 @@ function getPageLinksHTML(at\nerdreich\wiki\WikiUI $wiki): string
 {
     $html = '';
     foreach ($wiki->getMenuItems() as $action => $label) {
-        $html .= '<a href="?' . $action . '">' . ___($label) . '</a><br>';
+        $html .= '<a class="nav-' . preg_replace('/.*=/', '', $action) . '" href="?' . $action . '">' . ___($label) . '</a><br>';
     }
     return $html;
 }
