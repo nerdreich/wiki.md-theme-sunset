@@ -27,14 +27,13 @@
 @import '../../fonts/NotoSansMono/font';
 @import '../../fonts/FontAwesomeFree/font';
 
-$typography-font-list-sans-fallback: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-  sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+$typography-font-list-sans-fallback: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji',
+  'Segoe UI Emoji', 'Segoe UI Symbol';
 
-$typography-font-list-serif-fallback: 'Lucida Bright', Lucidabright, 'Lucida Serif', Lucida, 'DejaVu Serif',
-  'Bitstream Vera Serif', 'Liberation Serif', Georgia, serif;
+$typography-font-list-serif-fallback: 'Lucida Bright', Lucidabright, 'Lucida Serif', Lucida, 'DejaVu Serif', 'Bitstream Vera Serif', 'Liberation Serif',
+  Georgia, serif;
 
-$typography-font-list-monospace-fallback: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
-  monospace;
+$typography-font-list-monospace-fallback: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 
 $typography-font-list-sans: 'Averia Sans Libre', $typography-font-list-sans-fallback;
 
@@ -85,8 +84,7 @@ $typography-hr: px(2) solid $color-white-10a;
 ) {
   $gradient-transparent: linear-gradient(transparent, transparent);
 
-  background-image: $gradient-transparent, $gradient-transparent,
-    linear-gradient(to right, $underline-color, $underline-color);
+  background-image: $gradient-transparent, $gradient-transparent, linear-gradient(to right, $underline-color, $underline-color);
   background-position: left bottom 3px; // depends on underline
   background-repeat: no-repeat;
   background-size: 100% $underline-height;
@@ -99,7 +97,8 @@ $typography-hr: px(2) solid $color-white-10a;
   &:hover {
     @include set-property-if-not(color, $color, $color-hover);
 
-    background-image: $gradient-transparent, $gradient-transparent,
+    background-image:
+      $gradient-transparent, $gradient-transparent,
       linear-gradient(to right, $underline-color-hover, $underline-color-hover);
     text-decoration: none;
   }
