@@ -35,7 +35,9 @@ outputBanner($wiki);
       <label for="title" class="in-border"><?php __('Title - may remain empty'); ?></label>
       <input id="title" type="text" name="title" value="<?php echo $wiki->core->getTitle(); ?>">
       <label for="content" class="in-border"><?php __('Markdown'); ?></label>
-      <textarea id="content" class="textarea-fancy" name="content" required autofocus><?php echo $wiki->core->getContentMarkup(); ?></textarea>
+      <textarea id="content" class="textarea-fancy" name="content" required autofocus><?php
+        echo $wiki->core->getContentMarkup();
+        ?></textarea>
       <label for="author" class="in-border"><?php __('Author'); ?></label>
       <input id="author" type="text" name="author" value="<?php echo $wiki->user->getAlias(); ?>" required>
       <input type="submit" class="primary" value="<?php __('Save'); ?>"><input type="submit"

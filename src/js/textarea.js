@@ -92,9 +92,9 @@ function move (textarea, direction) {
 
   // swap lines
   const split = v.split(/\n/)
-  const delta = direction < 0 ?
-    (split[lineFrom - 1].length + 1) * -1 :
-    split[lineTo + 1].length + 1
+  const delta = direction < 0
+    ? (split[lineFrom - 1].length + 1) * -1
+    : split[lineTo + 1].length + 1
   const toMove = split.splice(lineFrom, lineTo - lineFrom + 1)
   split.splice(lineFrom + direction, 0, ...toMove)
   textarea.value = split.join('\n')
