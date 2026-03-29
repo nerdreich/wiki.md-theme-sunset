@@ -1,3 +1,7 @@
+# v2.4.1
+
+* fixed textarea line-up/down bug when cursor is on start of line
+
 # v2.4.0
 
 * added hotkeys (ctrl-e to edit, ctrl-s to save, Esc to cancel)
