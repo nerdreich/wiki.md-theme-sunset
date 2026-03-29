@@ -1,6 +1,6 @@
 {
   "name": "wiki.md-theme-sunset",
-  "version": "2.4.0",
+  "version": "2.4.1-dev1",
   "description": "A wiki.md theme built around the Averia font family.",
   "type": "module",
   "keywords": [
@@ -37,41 +37,41 @@
     "lint:standard": "standard --fix"
   },
   "devDependencies": {
-    "@babel/core": "^7.26.10",
-    "@babel/preset-env": "^7.26.9",
-    "@eslint/eslintrc": "^3.3.0",
-    "@eslint/js": "^9.22.0",
-    "babelify": "^10.0.0",
-    "browserify": "^17.0.1",
-    "del": "8",
-    "eslint": "^9.23.0",
-    "globals": "^16.0.0",
-    "gulp": "^5.0.0",
-    "gulp-autoprefixer": "9",
-    "gulp-concat": "2",
-    "gulp-gzip": "1",
-    "gulp-replace": "1",
-    "gulp-sass": "6",
-    "gulp-sort": "2",
-    "gulp-tar": "4",
-    "gulp-zip": "6",
-    "npm-run-all": "^4.1.5",
-    "prettier": "^3.5.3",
-    "sass": "^1.86.0",
-    "standard": "^17.1.2",
-    "stylelint-config-recommended": "^15.0.0",
-    "stylelint-config-sass-guidelines": "^12.1.0",
-    "stylelint-config-standard": "^37.0.0",
-    "stylelint-order": "^6.0.4",
-    "stylelint-scss": "^6.11.1",
-    "vinyl-source-stream": "^2.0.0"
+    "@babel/core": "7.29.0",
+    "@babel/preset-env": "7.29.2",
+    "@eslint/eslintrc": "3.3.5",
+    "@eslint/js": "10.0.1",
+    "babelify": "10.0.0",
+    "browserify": "17.0.1",
+    "del": "8.0.1",
+    "eslint": "10.1.0",
+    "globals": "17.4.0",
+    "gulp": "5.0.1",
+    "gulp-autoprefixer": "10",
+    "gulp-concat": "2.6.1",
+    "gulp-gzip": "1.4.2",
+    "gulp-replace": "1.1.4",
+    "gulp-sass": "6.0.1",
+    "gulp-sort": "2.0.0",
+    "gulp-tar": "5.0.0",
+    "gulp-zip": "6.1.0",
+    "npm-run-all": "4.1.5",
+    "prettier": "3.8.1",
+    "sass": "1.98.0",
+    "standard": "17.1.2",
+    "stylelint-config-recommended": "18.0.0",
+    "stylelint-config-sass-guidelines": "13.0.0",
+    "stylelint-config-standard": "40.0.0",
+    "stylelint-order": "8.1.1",
+    "stylelint-scss": "7.0.0",
+    "vinyl-source-stream": "2.0.0"
   },
   "dependencies": {
-    "bootstrap": "^5.3.3"
+    "bootstrap": "5.3.8"
   },
-  "overrides": {
-    "chokidar": "^3.5.3",
-    "glob-parent": "^6.0.2"
+  "xoverrides": {
+    "chokidar": "3.5.3",
+    "glob-parent": "6.0.2"
   },
   "bgColor": "#223240"
 }

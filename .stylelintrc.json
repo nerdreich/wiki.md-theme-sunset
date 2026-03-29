@@ -25,6 +25,7 @@
     "no-invalid-position-at-import-rule": null,
     "selector-max-compound-selectors": 10,
     "selector-no-qualifying-type": null,
-    "value-keyword-case": null
+    "value-keyword-case": null,
+    "nesting-selector-no-missing-scoping-root": null
   }
 }
