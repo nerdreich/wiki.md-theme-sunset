@@ -1,6 +1,6 @@
 {
   "name": "wiki.md-theme-sunset",
-  "version": "2.4.1-dev1",
+  "version": "2.5.0",
   "description": "A wiki.md theme built around the Averia font family.",
   "type": "module",
   "keywords": [
@@ -45,8 +45,8 @@
     "babelify": "10.0.0",
     "browserify": "17.0.1",
     "del": "8.0.1",
-    "eslint": "^9.39.1",
-    "neostandard": "^0.12.2",
+    "eslint": "9.39.4",
+    "neostandard": "0.12.2",
     "globals": "17.4.0",
     "gulp": "5.0.1",
     "gulp-autoprefixer": "10",
@@ -69,9 +69,8 @@
   "dependencies": {
     "bootstrap": "5.3.8"
   },
-  "xoverrides": {
-    "chokidar": "3.5.3",
-    "glob-parent": "6.0.2"
+  "overrides": {
+    "glob": "^13"
   },
   "bgColor": "#223240"
 }

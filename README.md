@@ -6,7 +6,7 @@ A [wiki.md](https://github.com/nerdreich/wiki.md) theme built around the Averia 
 
 ## Requirements
 
-* [wiki.md](https://github.com/nerdreich/wiki.md) v2.1.0+
+* [wiki.md](https://github.com/nerdreich/wiki.md) v2.5.0+
 
 ## Installation
 

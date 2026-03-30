@@ -1,7 +1,8 @@
-# v2.4.1
+# v2.5.0
 
 * fixed textarea line-up/down bug when cursor is on start of line
 * updated build tools for linting
+* migrated paginate macro from theme to core
 
 # v2.4.0
 
