@@ -19,6 +19,8 @@
 /// @access public
 ////
 
+@use '../global' as *;
+
 footer {
   border-top: 2px solid $color-line;
   color: $color-white-50a;

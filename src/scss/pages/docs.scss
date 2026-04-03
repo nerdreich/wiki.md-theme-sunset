@@ -1,3 +1,5 @@
+@use '../global' as *;
+
 .page.page-docs {
   img {
     border: 1px solid $color-line;

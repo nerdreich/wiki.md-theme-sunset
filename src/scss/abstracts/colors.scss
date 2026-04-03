@@ -15,7 +15,7 @@
 // along with Sunset. If not, see <https://www.gnu.org/licenses/>.
 
 ////
-/// @group themes
+/// @group abstracts
 /// @access public
 ////
 
@@ -56,3 +56,23 @@ $color-bg: $color-white-100;
 $color-bg-highlight: $color-gray-80;
 $color-text: $color-black-100;
 $color-headline: $color-black-100;
+
+// Theme colors
+
+$theme-color1: #df691a;
+$theme-color2: #1d1e2c;
+$theme-color3: #e3e5e7;
+$theme-color4: #394754;
+$theme-color5: #223240;
+$theme-color6: #1e2a33;
+$color-bg: $theme-color5;
+$color-bg-highlight: $theme-color4;
+$color-panel-bg: $theme-color6;
+$color-text: $theme-color3;
+$color-primary: $theme-color1;
+$color-negative: #be4f4e;
+$color-info: #496a81;
+$color-warning: #d5a021;
+$color-positive: #5fad41;
+$color-line: $theme-color4;
+$color-line-strong: $theme-color1;

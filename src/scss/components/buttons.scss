@@ -19,6 +19,9 @@
 /// @access public
 ////
 
+@use '../global' as *;
+@use 'sass:math';
+
 button,
 .btn,
 input[type='button'],
