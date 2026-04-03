@@ -1,7 +1,7 @@
 <?php // phpcs:ignore
 
 /**
- * Copyright 2020-2024 Markus Leupold-Löwenthal
+ * Copyright 2020-2026 Markus Leupold-Löwenthal
  *
  * This file is part of wiki.md-theme-sunset (Sunset).
  *
@@ -69,43 +69,6 @@ $wiki->core->getPlugin('macro')->registerMacro('pagelist', function (
         }
     }
 
-    return $snippet;
-});
-
-$wiki->core->getPlugin('macro')->registerMacro('paginate', function (
-    ?string $primary,
-    ?array $secondary,
-    string $path
-): string {
-    $snippet = '';
-    $pages = [];
-    $myIndex = -1;
-    $basename = basename($path);
-
-    // load all matching files
-    $pattern = '/^' . str_replace('*', '.*', $primary) . '$/';
-    foreach (scandir(dirname($path)) as $filename) {
-        if (preg_match($pattern, $filename)) {
-            if (is_file(dirname($path) . '/' . $filename)) {
-                $pages[] = preg_replace('/\.md$/', '', $filename);
-                if (basename($filename) === $basename) { // hey - it's us!
-                    $myIndex = sizeof($pages) - 1;
-                }
-            }
-        }
-    }
-
-    // output pagination
-    if ($myIndex < 0) {
-        return '{{error prevnext-not-found}}';
-    }
-    if ($myIndex > 0) {
-        $snippet .= '[←](' . ($pages[$myIndex - 1]) . ') | ';
-    }
-    $snippet .= ___('Entry %d of %d', $myIndex + 1, count($pages));
-    if ($myIndex < sizeof($pages) - 1) {
-        $snippet .= ' | [→](' . ($pages[$myIndex + 1]) . ')';
-    }
     return $snippet;
 });
 

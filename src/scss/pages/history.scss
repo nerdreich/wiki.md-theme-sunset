@@ -1,4 +1,4 @@
-// Copyright 2020-2024 Markus Leupold-Löwenthal
+// Copyright 2020-2026 Markus Leupold-Löwenthal
 //
 // This file is part of wiki.md-theme-sunset (Sunset).
 //
@@ -18,6 +18,8 @@
 /// @group pages
 /// @access public
 ////
+
+@use '../global' as *;
 
 .page-history {
   .diff {
@@ -42,7 +44,7 @@
         border-radius: 100%;
         color: $color-text;
         content: '\f0c7';
-        font-family: 'Font Awesome 5 Free';
+        font-family: 'Font Awesome 5 Free', sans-serif;
         font-weight: 900;
         height: 2em;
         left: -2.6em;

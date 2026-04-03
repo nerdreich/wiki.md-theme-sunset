@@ -1,4 +1,4 @@
-// Copyright 2020-2024 Markus Leupold-Löwenthal
+// Copyright 2020-2026 Markus Leupold-Löwenthal
 //
 // This file is part of wiki.md-theme-sunset (Sunset).
 //
@@ -18,6 +18,9 @@
 /// @group layout
 /// @access public
 ////
+
+@use 'sass:math';
+@use '../global' as *;
 
 // Basic handling of <section>s. Automatically adds proper spacing between
 // sections based on their content/usage (mostly depending on if they do have

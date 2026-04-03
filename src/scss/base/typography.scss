@@ -1,4 +1,4 @@
-// Copyright 2020-2024 Markus Leupold-Löwenthal
+// Copyright 2020-2026 Markus Leupold-Löwenthal
 //
 // This file is part of wiki.md-theme-sunset (Sunset).
 //
@@ -15,96 +15,19 @@
 // along with Sunset. If not, see <https://www.gnu.org/licenses/>.
 
 ////
-/// @group abstracts
+/// @group base
 /// @access public
 ////
+
+@use '../global' as *;
 
 // We try to use relative units (em) if possible, so that it is easier to scale
 // the font/element on its font-size.
 
-@import '../../fonts/AveriaSansLibre/font';
-@import '../../fonts/AveriaSerifLibre/font';
-@import '../../fonts/NotoSansMono/font';
-@import '../../fonts/FontAwesomeFree/font';
-
-$typography-font-list-sans-fallback: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji',
-  'Segoe UI Emoji', 'Segoe UI Symbol';
-
-$typography-font-list-serif-fallback: 'Lucida Bright', Lucidabright, 'Lucida Serif', Lucida, 'DejaVu Serif', 'Bitstream Vera Serif', 'Liberation Serif',
-  Georgia, serif;
-
-$typography-font-list-monospace-fallback: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
-
-$typography-font-list-sans: 'Averia Sans Libre', $typography-font-list-sans-fallback;
-
-$typography-font-list-serif: 'Averia Serif Libre', $typography-font-list-serif-fallback;
-
-$typography-font-list-monospace: 'Noto Sans Mono', $typography-font-list-monospace-fallback;
-
-$typography-body-font-size: px(18);
-
-$typography-hr: px(2) solid $color-white-10a;
-
-// ---------------------------------------------------------------------
-
-@mixin typography-font(
-  $font-family,
-  $font-weight: 300,
-  $font-size: 1em,
-  $line-height: 1.5em,
-  $letter-spacing: 0,
-  $font-stretch: 100%
-) {
-  @include set-property-if-not(letter-spacing, 0, $letter-spacing);
-  @include set-property-if-not(font-stretch, 100%, $font-stretch);
-
-  font-family: $font-family;
-  font-size: $font-size;
-  font-weight: $font-weight;
-  line-height: $line-height;
-}
-
-/// Setup links (anchors). Fancy with color, opacity and colorful underlines!
-///
-/// @example scss
-///   @include a-underlined(#333, rgba(#333, 0.7), 2px, #555, rgba(#555, 0.7));
-///
-/// @param {color} $color [inherit] The text color.
-/// @param {color} $color-hover [$color] The text color when hovering.
-/// @param {length} $underline-height [1px] The height / thickness of the underline.
-/// @param {color} $underline-color [$color] The regular color of the underline.
-/// @param {color} $underline-color-hover [$color] The hover color fo the underline.
-/// @output An `a {}` rules block for fancy links.
-@mixin typography-links(
-  $color: inherit,
-  $color-hover: $color,
-  $underline-height: 1px,
-  $underline-color: $color,
-  $underline-color-hover: $color
-) {
-  $gradient-transparent: linear-gradient(transparent, transparent);
-
-  background-image: $gradient-transparent, $gradient-transparent, linear-gradient(to right, $underline-color, $underline-color);
-  background-position: left bottom 3px; // depends on underline
-  background-repeat: no-repeat;
-  background-size: 100% $underline-height;
-  color: $color;
-  display: inline;
-  padding-bottom: 2px;
-  position: relative;
-  text-decoration: none;
-
-  &:hover {
-    @include set-property-if-not(color, $color, $color-hover);
-
-    background-image:
-      $gradient-transparent, $gradient-transparent,
-      linear-gradient(to right, $underline-color-hover, $underline-color-hover);
-    text-decoration: none;
-  }
-}
-
-// ---------------------------------------------------------------------
+@use '../../fonts/AveriaSansLibre/font' as *;
+@use '../../fonts/AveriaSerifLibre/font' as *;
+@use '../../fonts/NotoSansMono/font' as *;
+@use '../../fonts/FontAwesomeFree/font' as *;
 
 html {
   font-size: 16px; // root font size
@@ -116,15 +39,33 @@ body {
 }
 
 body {
-  @include typography-font($typography-font-list-sans, 400, $typography-body-font-size, 1.6em, 0.025em);
+  @include typography-font(
+    $typography-font-list-sans,
+    400,
+    $typography-body-font-size,
+    1.6em,
+    0.025em
+  );
 
   color: $color-text;
 
   a {
-    @include typography-links($color-primary, $color-white-100, 1px, transparent, $color-primary);
+    @include typography-links(
+      $color-primary,
+      $color-white-100,
+      1px,
+      transparent,
+      $color-primary
+    );
 
     &.broken {
-      @include typography-links($color-negative, $color-text, 1px, $color-negative, $color-negative);
+      @include typography-links(
+        $color-negative,
+        $color-text,
+        1px,
+        $color-negative,
+        $color-negative
+      );
     }
   }
 }
@@ -133,7 +74,14 @@ pre,
 code,
 kbd,
 samp {
-  @include typography-font($typography-font-list-monospace, 700, px(16), 1.4em, 0, 75%);
+  @include typography-font(
+    $typography-font-list-monospace,
+    700,
+    px(16),
+    1.4em,
+    0,
+    75%
+  );
 
   color: $color-text;
   padding: 0.1em 0.25em;
@@ -147,58 +95,38 @@ pre {
   }
 }
 
-.h0,
-%h0 {
-  @include typography-font($typography-font-list-serif, 700, 2.5em, 1em, 0.025em);
-
-  color: $color-white-100;
-  text-transform: uppercase;
+.h0 {
+  @extend %h0;
 }
 
 h1,
-.h1,
-%h1 {
-  @include typography-font($typography-font-list-serif, 700, 2.5em, 1.1em, 0.025em);
-
-  border-bottom: $typography-hr;
-  color: $color-white-100;
-  font-style: italic;
-  margin-bottom: $spacing-huge;
-  margin-top: $spacing-huge;
+.h1 {
+  @extend %h1;
 }
 
 h2,
-.h2,
-%h2 {
-  @include typography-font($typography-font-list-serif, 700, 1.75em, 1.1em, 0.025em);
-
-  color: $color-white-100;
-  font-style: italic;
-  margin-top: $spacing-huge;
+.h2 {
+  @extend %h2;
 }
 
 h3,
-.h3,
-%h3 {
-  @include typography-font($typography-font-list-serif, 700, 1.25em, 1.25em, 0.025em);
-
-  color: $color-white-100;
-  margin-top: $spacing-huge;
+.h3 {
+  @extend %h3;
 }
 
 h4,
-.h4,
-%h4,
-h5,
-.h5,
-%h5,
-h6,
-.h6,
-%h6 {
-  @include typography-font($typography-font-list-serif, 700, 1.25em, 0.25em);
+.h4 {
+  @extend %h4;
+}
 
-  color: $color-white-100;
-  margin-top: $spacing-huge;
+h5,
+.h5 {
+  @extend %h5;
+}
+
+h6,
+.h6 {
+  @extend %h6;
 }
 
 ul,

@@ -1,4 +1,4 @@
-// Copyright 2020-2024 Markus Leupold-Löwenthal
+// Copyright 2020-2026 Markus Leupold-Löwenthal
 //
 // This file is part of wiki.md-theme-sunset (Sunset).
 //
@@ -19,17 +19,31 @@
 /// @access public
 ////
 
+@use 'sass:math';
+@use '../global' as *;
+
 $input-padding: math.div($spacing, 2);
 
 form {
   margin-top: 0;
 }
 
+textarea {
+  min-height: 50vh;
+}
+
 input[type='text'],
 input[type='password'],
 input[type='file'],
 textarea {
-  @include typography-font($typography-font-list-monospace, 400, px(18), 1.4em, 0, 75%);
+  @include typography-font(
+    $typography-font-list-monospace,
+    400,
+    px(18),
+    1.4em,
+    0,
+    75%
+  );
 
   background-color: $color-bg;
   border: 2px solid $color-line;
@@ -106,8 +120,4 @@ label.in-border {
   &:first-child {
     margin-top: 0.5rem; // enforce margin in containers
   }
-}
-
-textarea {
-  min-height: 50vh;
 }
